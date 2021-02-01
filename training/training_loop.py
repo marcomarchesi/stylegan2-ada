@@ -306,15 +306,15 @@ def training_loop(
                 pkl = os.path.join(run_dir, f'network-snapshot-{cur_nimg // 1000:06d}.pkl')
                 with open(pkl, 'wb') as f:
                     pickle.dump((G, D, Gs), f)
-                if len(metrics):
-                    print('Evaluating metrics...')
-                    for metric in metrics:
-                        metric.run(pkl, num_gpus=num_gpus)
+                # if len(metrics):
+                #     print('Evaluating metrics...')
+                #     for metric in metrics:
+                #         metric.run(pkl, num_gpus=num_gpus)
 
             # Update summaries.
-            for metric in metrics:
-                metric.update_autosummaries()
-            tflib.autosummary.save_summaries(summary_log, cur_nimg)
+            # for metric in metrics:
+            #     metric.update_autosummaries()
+            # tflib.autosummary.save_summaries(summary_log, cur_nimg)
             tick_start_time = time.time()
             maintenance_time = tick_start_time - tick_end_time
 
