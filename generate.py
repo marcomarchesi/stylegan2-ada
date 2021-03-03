@@ -60,7 +60,7 @@ def generate_images(network_pkl, seeds, truncation_psi, outdir, class_idx, dlate
         z = rnd.randn(1, *Gs.input_shape[1:]) # [minibatch, component]
         tflib.set_vars({var: rnd.randn(*var.shape.as_list()) for var in noise_vars}) # [height, width]
         images = Gs.run(z, label, **Gs_kwargs) # [minibatch, height, width, channel]
-        PIL.Image.fromarray(images[0], 'RGB').save(f'{outdir}/seed{seed:04d}.png')
+        PIL.Image.fromarray(images[0], 'RGB').transpose(PIL.Image.FLIP_LEFT_RIGHT).save(f'{outdir}/seed{seed:04d}.png')
 
 #----------------------------------------------------------------------------
 
